@@ -1,0 +1,31 @@
+{:deps   {:aliases [:dev]}
+
+ :dev-http {5000 ["resources/public"]}
+ :builds {:app {:target           :browser
+                :output-dir       "resources/public/js"
+                :asset-path       "/js"
+                :modules {:core {:entries [app.core]}}
+                :js-options {:js-provider :external
+                             :external-index "resources/public/js/lib.js"
+                             :external-index-format :esm}
+                :build-hooks [(app.shadow.hooks/configure-sh
+                               :prep-lib
+                               "touch"
+                               "resources/public/js/lib.js")
+                              (app.shadow.hooks/configure-sh
+                               :prep-havok
+                               "cp"
+                               "node_modules/@babylonjs/havok/lib/esm/HavokPhysics.wasm"
+                               "resources/public/havok.wasm")
+                              (app.shadow.hooks/build-index
+                               "resources/index.src.html"
+                               "resources/public/index.html")]
+                :dev {:build-hooks [(app.shadow.hooks/esbuild-watch
+                                     "resources/public/js/lib.js"
+                                     "resources/public/js/lib.bundle.js")]}
+                :release {:build-hooks [(app.shadow.hooks/esbuild
+                                         "resources/public/js/lib.js"
+                                         "resources/public/js/lib.bundle.js")
+                                        (app.shadow.hooks/hashed-files
+                                         ["resources/public/js/core.js"
+                                          "resources/public/js/lib.bundle.js"])]}}}}
