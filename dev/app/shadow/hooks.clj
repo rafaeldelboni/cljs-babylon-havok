@@ -59,27 +59,26 @@
 (defn hashed-files
   {:shadow.build/stage :flush}
   [{::build/keys [mode] :as build-state} files]
-  (doall
-   (assoc build-state ::hashed-files
-          (for [old-file-full-path files]
-            (let [old-file (io/file old-file-full-path)
-                  old-file-name (.getName old-file)]
-              (if (= :release mode)
-                (let [contents (slurp old-file-full-path)
-                      old-file-path (.getParentFile old-file)
-                      new-file-name (str (util/md5hex contents) "." old-file-name)
-                      new-file-full-path (str old-file-path "/" new-file-name)
-                      new-file (io/file new-file-full-path)]
-                  (.renameTo old-file new-file)
-                  {:old-file-full-path old-file-full-path
-                   :old-file-name old-file-name
-                   :new-file-full-path new-file-full-path
-                   :new-file-name new-file-name})
-
-                {:old-file-full-path old-file-full-path
-                 :old-file-name old-file-name
-                 :new-file-full-path old-file-full-path
-                 :new-file-name old-file-name}))))))
+  (let [result (doall
+                (for [old-file-full-path files]
+                  (let [old-file (io/file old-file-full-path)
+                        old-file-name (.getName old-file)]
+                    (if (= :release mode)
+                      (let [contents (slurp old-file-full-path)
+                            old-file-path (.getParentFile old-file)
+                            new-file-name (str (util/md5hex contents) "." old-file-name)
+                            new-file-full-path (str old-file-path "/" new-file-name)
+                            new-file (io/file new-file-full-path)]
+                        (.renameTo old-file new-file)
+                        {:old-file-full-path old-file-full-path
+                         :old-file-name old-file-name
+                         :new-file-full-path new-file-full-path
+                         :new-file-name new-file-name})
+                      {:old-file-full-path old-file-full-path
+                       :old-file-name old-file-name
+                       :new-file-full-path old-file-full-path
+                       :new-file-name old-file-name}))))]
+    (assoc build-state ::hashed-files result)))
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 (defn build-index
