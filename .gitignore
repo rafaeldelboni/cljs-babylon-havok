@@ -2,6 +2,7 @@ node_modules/
 
 resources/tests
 resources/public/*
+!resources/public/assets
 !resources/public/app.css
 !resources/public/favicon.svg
 
