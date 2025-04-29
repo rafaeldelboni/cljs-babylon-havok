@@ -32,7 +32,7 @@
 
     (-> (AppendSceneAsync "assets/test-scene.glb" scene)
         (.then (fn []
-                 (set! (.-intensity global-light) 0.5)
+                 (set! (.-intensity global-light) 1.0)
 
                  (.setTarget camera (. Vector3 Zero))
                  (.attachControl camera canvas true)
