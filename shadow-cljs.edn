@@ -16,16 +16,19 @@
                                :prep-havok
                                "cp"
                                "node_modules/@babylonjs/havok/lib/esm/HavokPhysics.wasm"
-                               "resources/public/havok.wasm")
-                              (app.shadow.hooks/build-index
-                               "resources/index.src.html"
-                               "resources/public/index.html")]
+                               "resources/public/havok.wasm")]
                 :dev {:build-hooks [(app.shadow.hooks/esbuild-watch
                                      "resources/public/js/lib.js"
-                                     "resources/public/js/lib.bundle.js")]}
+                                     "resources/public/js/lib.bundle.js")
+                                    (app.shadow.hooks/build-index
+                                     "resources/index.src.html"
+                                     "resources/public/index.html")]}
                 :release {:build-hooks [(app.shadow.hooks/esbuild
                                          "resources/public/js/lib.js"
                                          "resources/public/js/lib.bundle.js")
                                         (app.shadow.hooks/hashed-files
                                          ["resources/public/js/core.js"
-                                          "resources/public/js/lib.bundle.js"])]}}}}
+                                          "resources/public/js/lib.bundle.js"])
+                                        (app.shadow.hooks/build-index
+                                         "resources/index.src.html"
+                                         "resources/public/index.html")]}}}}
