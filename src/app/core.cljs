@@ -7,7 +7,7 @@
    ["@babylonjs/core/Loading/sceneLoader" :refer [AppendSceneAsync]]
    ["@babylonjs/core/Materials/standardMaterial"]
    ["@babylonjs/core/Maths/math.vector" :refer [Vector3]]
-   ["@babylonjs/core/Physics/physicsEngineComponent"]
+   ["@babylonjs/core/Physics/physicsEngineComponent.js"]
    ["@babylonjs/core/Physics/v2/IPhysicsEnginePlugin" :refer [PhysicsShapeType]]
    ["@babylonjs/core/Physics/v2/physicsAggregate" :refer [PhysicsAggregate]]
    ["@babylonjs/core/Physics/v2/Plugins/havokPlugin" :refer [HavokPlugin]]
