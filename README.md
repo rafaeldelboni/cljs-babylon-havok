@@ -2,7 +2,7 @@
 
 A focused exploration of the integration between ClojureScript, Babylon.js, and the Havok physics engine.
 
-**Note:** The code within this repository is part of an initial exploration and may not reflect production-ready quality or best practices.
+> **Note:** The code within this repository is part of an initial exploration and may not reflect production-ready quality or best practices.
 
 ## Workflow
 
@@ -29,8 +29,6 @@ The GLTF export configuration employed for this workflow includes the following 
 The resulting output after rendering the scene and enabling the physics simulation demonstrates the integration of these technologies.
 
 ![render-result](docs/render-result.png)
-
-This repository serves as an initial investigation into this specific development approach.
 
 ## Requirements
 - [npm](https://www.npmjs.com/)
@@ -60,4 +58,4 @@ npx http-server resources/public -g
 ```
 
 ## Another study
-- [https://github.com/rafaeldelboni/cljs-threejs-rapier](cljs-threejs-rapier)
+- [cljs-threejs-rapier](https://github.com/rafaeldelboni/cljs-threejs-rapier)
